@@ -9,28 +9,24 @@ namespace Gameplay
 {
     public class TargetSpawner : MonoBehaviour
     {
-        [SerializeField] private SphereSettings sphereSettings;
+        [SerializeField] private GameSettings sphereSettings;
 
         [SerializeField] private GameObject targetPrefab;
 
         private List<Target> _targetsList;
+
+        public IEnumerable<Target> Targets => _targetsList;
+
+        public bool TargetsReady { get; private set; }
 
         private void Awake()
         {
             _targetsList = new List<Target>();
         }
 
-        IEnumerator Start()
+        void Start()
         {
             Spawn();
-
-            while (true)
-            {
-                yield return new WaitForSeconds(2f);
-
-                var a = GetRandomTarget();
-                a.Select();
-            }
         }
 
         private void OnEnable()
@@ -72,11 +68,13 @@ namespace Gameplay
                     var target = Instantiate(targetPrefab, transform);
 
                     var targetComponent = target.GetComponent<Target>();
-                    targetComponent.Init(sphereSettings, sphericalPos, 2f * Mathf.Pow(-1, i) / horizontal);
+                    targetComponent.Init(sphereSettings, sphericalPos, sphereSettings.TargetsSpeed * Mathf.Pow(-1, i) / horizontal);
 
                     _targetsList.Add(targetComponent);
                 }
             }
+
+            TargetsReady = true;
         }
     }
 }

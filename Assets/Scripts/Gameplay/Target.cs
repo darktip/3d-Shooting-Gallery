@@ -5,29 +5,41 @@ namespace Gameplay
 {
     public class Target : MonoBehaviour, IShootable
     {
-        private SphereSettings _sphereSettings;
+        private GameSettings _sphereSettings;
         private VectorSphere _spherePos;
 
         private float _speed;
+        private bool _move;
 
         public VectorSphere SpherePosition => _spherePos;
 
         public static event Action<Target> OnTargetSelect;
         public static event Action<Target> OnTargetShot; 
         
-        public void Init(SphereSettings sphereSettings, VectorSphere spherePos, float speed)
+        public void Init(GameSettings sphereSettings, VectorSphere spherePos, float speed)
         {
             _sphereSettings = sphereSettings;
             _spherePos = spherePos;
             _speed = speed;
+            
+            transform.localPosition = _spherePos.ToCartesian();
+            transform.LookAt(Vector3.zero);
+        }
+
+        public void Move(bool move)
+        {
+            _move = move;
         }
 
         public void Update()
         {
-            _spherePos.phi += _speed * Time.deltaTime;
-        
-            transform.localPosition = _spherePos.ToCartesian();
-            transform.LookAt(Vector3.zero);
+            if (_move)
+            {
+                _spherePos.phi += _speed * Time.deltaTime;
+             
+                transform.localPosition = _spherePos.ToCartesian();
+                transform.LookAt(Vector3.zero);
+            }
         }
 
         public bool IsNeighbour(Target other)

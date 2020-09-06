@@ -10,7 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0591de9b40a45da429dd459116b29586, type: 3}
-  m_Name: Test Sphere Settings
+  m_Name: Test Game Settings
   m_EditorClassIdentifier: 
   radius: 20
   spacing: 0.1
+  targetsSpeed: 2
+  winTargetsCount: 10
+  betweenTargetsTime: 10
+  autoAimTime: 1.25
+  showWayTime: 1
+  scoreToStartMovingTargets: 5

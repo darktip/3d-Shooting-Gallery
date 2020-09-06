@@ -3,13 +3,15 @@
     Properties
     {
         _Color("Color", Color) = (1,1,1,1)
+        _ShowValue("Show Value", Range(0,1)) = 1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
         LOD 100
 
         ZTest Always
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -34,6 +36,7 @@
             };
             
             fixed4 _Color;
+            float _ShowValue;
 
             v2f vert (appdata v)
             {
@@ -48,6 +51,8 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = _Color * i.color;
+                
+                clip(_ShowValue - i.uv.x);
                 
                 return col;
             }

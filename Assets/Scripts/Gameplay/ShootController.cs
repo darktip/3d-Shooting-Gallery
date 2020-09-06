@@ -7,16 +7,15 @@ namespace Gameplay
     public class ShootController : MonoBehaviour
     {
         [SerializeField] private LayerMask shootLayer;
-        [SerializeField] private SphereSettings sphereSettings;
+        [SerializeField] private GameSettings sphereSettings;
 
-        private GameInputBase _input;
+        private GameInputBase _input => InputManager.Instance.Input;
         private Camera _camera;
 
         private float _maxDist;
 
         private void Start()
         {
-            _input = InputManager.Instance.Input;
             _camera = Camera.main;
             _maxDist = sphereSettings ? sphereSettings.Radius : 500;
         }
