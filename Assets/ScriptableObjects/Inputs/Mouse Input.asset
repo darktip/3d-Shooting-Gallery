@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f7ae210e714648d6896af48f19450040, type: 3}
   m_Name: Mouse Input
-  m_EditorClassIdentifier: Assembly-CSharp:GameInput:GameInputMouse
+  m_EditorClassIdentifier: 
   shootMouseButton: 0
   mouseIntensity: 2
   flipVertical: 0
