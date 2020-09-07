@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Gameplay;
+using Gameplay.Settings;
 using UnityEngine;
 
 namespace Visuals

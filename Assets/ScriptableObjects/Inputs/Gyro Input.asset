@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b57835e4c84e9d8ea2712cde58ef8b, type: 3}
   m_Name: Gyro Input
   m_EditorClassIdentifier: 
+  gyroIntensity: 1
+  flipVertical: 0
+  flipHorizontal: 0

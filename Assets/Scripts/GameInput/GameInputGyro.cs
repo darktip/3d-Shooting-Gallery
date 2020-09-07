@@ -1,18 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace GameInput
 {
     [CreateAssetMenu(fileName = "New Gyro Input", menuName = "Input/GyroInput", order = 50)]
     public class GameInputGyro : GameInputBase
     {
+        [SerializeField] private float gyroIntensity = 1;
+        [SerializeField] private bool flipVertical;
+        [SerializeField] private bool flipHorizontal;
+
+        public override void Init()
+        {
+            Input.gyro.enabled = true;
+        }
+
         public override float CameraHorizontalAxis()
         {
-            return Input.gyro.rotationRate.y;
+            float f = flipHorizontal ? -1 : 1;
+            return - Input.gyro.rotationRate.y * gyroIntensity * f;
         }
 
         public override float CameraVerticalAxis()
         {
-            return Input.gyro.rotationRate.x;
+            float f = flipVertical ? -1 : 1;
+            return - Input.gyro.rotationRate.x * gyroIntensity * f;
         }
 
         public override bool Shoot()

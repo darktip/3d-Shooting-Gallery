@@ -1,5 +1,5 @@
-﻿using System;
-using GameInput;
+﻿using GameInput;
+using Gameplay.Settings;
 using UnityEngine;
 
 namespace Gameplay

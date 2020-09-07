@@ -10,17 +10,17 @@ namespace GameInput
         [SerializeField] private float mouseIntensity;
         [SerializeField] private bool flipVertical;
         [SerializeField] private bool flipHorizontal;
-
-        private void OnEnable()
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
+        
         private void OnDisable()
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        public override void Init()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public override float CameraHorizontalAxis()
@@ -32,7 +32,7 @@ namespace GameInput
         public override float CameraVerticalAxis()
         {
             float f =  flipVertical ? -1 : 1;
-            return Input.GetAxis("Mouse Y") * mouseIntensity * f;
+            return - Input.GetAxis("Mouse Y") * mouseIntensity * f;
         }
 
         public override bool Shoot()

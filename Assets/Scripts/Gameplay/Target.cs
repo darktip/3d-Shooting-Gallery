@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Settings;
 using UnityEngine;
 
 namespace Gameplay

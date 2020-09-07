@@ -17,7 +17,7 @@ namespace Gameplay
             if (_blockUpdate)
                 return;
 
-            _verticalLookRotation += -_input.CameraVerticalAxis();
+            _verticalLookRotation += _input.CameraVerticalAxis();
             _verticalLookRotation = Mathf.Clamp(_verticalLookRotation, -90, 90);
 
             transform.Rotate(Vector3.up, _input.CameraHorizontalAxis(), Space.World);

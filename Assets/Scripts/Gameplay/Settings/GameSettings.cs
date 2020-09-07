@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Settings
 {
     [CreateAssetMenu(fileName = "New Game Settings", menuName = "Game Settings", order = 50)]
     public class GameSettings : ScriptableObject

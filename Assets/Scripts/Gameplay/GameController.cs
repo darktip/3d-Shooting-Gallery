@@ -1,5 +1,6 @@
 ﻿using System;
 using GameInput;
+using Gameplay.Settings;
 using Gameplay.States;
 using Patterns.State_Machine;
 using UnityEngine;
@@ -66,6 +67,11 @@ namespace Gameplay
         public void IncrementScore()
         {
             Score++;
+        }
+
+        public int CalculateFinalScore()
+        {
+            return (int) (FullTime * 10 / gameSettings.WinTargetsCount);
         }
 
         private void OnTargetShot(Target target)

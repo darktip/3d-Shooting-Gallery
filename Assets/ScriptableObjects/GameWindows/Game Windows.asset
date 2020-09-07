@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0cf274dec4d3d4e82abd9cb2575a32, type: 3}
+  m_Name: Game Windows
+  m_EditorClassIdentifier: 
+  mainWindow: {fileID: 4392773481231310081, guid: 5e89f478412e5424facb4ceba62fad2e,
+    type: 3}
+  highScoreWindow: {fileID: 5343845293640263456, guid: d00b1026ae18e1e47949d157e440fea2,
+    type: 3}
+  winScreen: {fileID: 116304378569412181, guid: afb4f443fc90c2e46b5f2b87cf62505a,
+    type: 3}
+  looseScreen: {fileID: 6163342903269410667, guid: 725f9f17000d80d4cae445cb68a665d2,
+    type: 3}

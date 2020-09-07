@@ -1,4 +1,5 @@
-﻿using Patterns.Singleton;
+﻿using System;
+using Patterns.Singleton;
 using UnityEngine;
 
 namespace GameInput
@@ -7,11 +8,18 @@ namespace GameInput
     {
         [SerializeField] private GameInputBase gameInput;
 
+        private void Awake()
+        {
+            if (gameInput)
+                gameInput.Init();
+        }
+
         public GameInputBase Input => gameInput;
         
         public void SetInput(GameInputBase input)
         {
             gameInput = input;
+            input.Init();
         }
     }
 }

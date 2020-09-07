@@ -5,6 +5,11 @@ namespace GameInput
     [CreateAssetMenu(fileName = "None Input", menuName = "Input/NoneInput", order = 50)]
     public class GameInputNone : GameInputBase
     {
+        public override void Init()
+        {
+            
+        }
+
         public override float CameraHorizontalAxis()
         {
             return 0;

@@ -33,7 +33,7 @@ namespace Gameplay.States
 
             if (Time.time > _shootUntilTime)
             {
-                stateMachine.SetState(new EndGameState(stateMachine));
+                stateMachine.SetState(new ShowWayState(stateMachine));
             }
         }
 
@@ -45,7 +45,7 @@ namespace Gameplay.States
 
                 if (_owner.Score == _owner.Settings.WinTargetsCount)
                 {
-                    stateMachine.SetState(new EndGameState(stateMachine));
+                    stateMachine.SetState(new EndGameState(stateMachine, true));
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace Gameplay.States
             }
             else
             {
-                stateMachine.SetState(new EndGameState(stateMachine));
+                stateMachine.SetState(new EndGameState(stateMachine, false));
             }
         }
     }
