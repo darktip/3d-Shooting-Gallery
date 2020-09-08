@@ -26,8 +26,10 @@ namespace UI.Windows
 
         protected virtual void Start()
         {
+            // loading and sorting score data
             int[] scores = (from s in Database.Instance.Data.scores orderby s select s).ToArray();
             
+            // creating score entries and setting height to evenly distribute across panel
             for (int i = 0, j = 0; i < IntConstants.HighScoreMenuScoreItems && j < scores.Length; i++, j++)
             {
                 var si = Instantiate(scoreItemPrefab, scoreItemsPanel);
@@ -35,7 +37,7 @@ namespace UI.Windows
                     scoreItemsPanel.rect.height / IntConstants.HighScoreMenuScoreItems);
 
                 var text = si.GetComponentInChildren<TextMeshProUGUI>();
-                if (text)
+                if (text)  // setting text
                 {
                     text.text = scores[j].ToString();
                 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Data
 {
+    // Monobehaviour responsible for loading data to Database
+    // and overwriting json data to SO gamesettings
     public class DatabaseLoader : MonoBehaviour
     {
         [SerializeField] private GameSettings gameSettings;
@@ -21,7 +23,7 @@ namespace Data
 
             if (!string.IsNullOrWhiteSpace(json))
             {
-                JsonUtility.FromJsonOverwrite(json, gameSettings);
+                JsonUtility.FromJsonOverwrite(json, gameSettings); // overwrites all serializable fields from json
             }
         }
     }

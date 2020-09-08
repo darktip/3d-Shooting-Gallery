@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Data
 {
+    // class for loading and saving game data
     public class Database : Singleton<Database>
     {
         [SerializeField] private SaveData _data;
@@ -15,19 +16,19 @@ namespace Data
 
         public void Load()
         {
-            _data = new SaveData();
+            _data = new SaveData(); // create new data
 
-            try
+            try // try catch if something goes wrong
             {
                 using (var fs =
                     new FileStream(Path.Combine(Application.persistentDataPath, StringConstants.SaveDataPath),
-                        FileMode.Open))
+                        FileMode.Open)) // opening file
                 {
-                    BinaryFormatter formatter = new BinaryFormatter();
+                    BinaryFormatter formatter = new BinaryFormatter(); 
 
                     try
                     {
-                        _data = (SaveData) formatter.Deserialize(fs);
+                        _data = (SaveData) formatter.Deserialize(fs); // deserialize binary data to local variable
                         Debug.Log("Database loaded!");
                     }
                     catch (Exception e)
@@ -36,7 +37,7 @@ namespace Data
                     }
                 }
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException) // if file is not found we just end up with blank SaveData object
             {
             }
         }
@@ -44,13 +45,13 @@ namespace Data
         public void Save()
         {
             using (var fs = new FileStream(Path.Combine(Application.persistentDataPath, StringConstants.SaveDataPath),
-                FileMode.Create))
+                FileMode.Create)) // creating file
             {
                 BinaryFormatter formatter = new BinaryFormatter();
 
                 try
                 {
-                    formatter.Serialize(fs, _data);
+                    formatter.Serialize(fs, _data); // serialize data to binary file
                     Debug.Log("Database saved!");
                 }
                 catch (Exception e)
@@ -62,20 +63,20 @@ namespace Data
 
         public void AddScore(int score)
         {
-            _data.scores.Add(score);
-            Save();
+            _data.scores.Add(score); // add score to SaveData object
+            Save();                  // and save to file
         }
 
-        public string GetSettingsJson()
+        public string GetSettingsJson() // gets settings json from streamingAssetsPath
         {
             string filePath = Path.Combine(Application.streamingAssetsPath, StringConstants.JsonStreamingAssetsPath);
 
             try
             {
-                if (Application.platform == RuntimePlatform.Android) //Need to extract file from apk first
-                {
+                if (Application.platform == RuntimePlatform.Android) // if android using WWW to extract text, because File.ReadAllText won't work
+                {                                                    // because streaming assets on android is not a folder but jar archive
                     WWW reader = new WWW(filePath);
-                    while (!reader.isDone)
+                    while (!reader.isDone)                           // waiting until read all text
                     {
                     }
 
@@ -83,12 +84,12 @@ namespace Data
                 }
                 else
                 {
-                    return File.ReadAllText(filePath);
+                    return File.ReadAllText(filePath);               // on windows just read file
                 }
             }
             catch (Exception e)
             {
-                return "";
+                return "";                                           // return empty if something goes wrong
             }
         }
     }

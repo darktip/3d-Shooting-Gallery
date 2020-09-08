@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Data
 {
+    // model for holding save data
+    // now it's just scores
     [Serializable]
     public class SaveData
     {

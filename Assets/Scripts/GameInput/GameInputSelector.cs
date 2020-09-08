@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace GameInput
 {
+    // class that selects input method on Awake
+    // by target platform
     [RequireComponent(typeof(InputManager))]
     public class GameInputSelector : MonoBehaviour
     {

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
+    // base class for windows
     public abstract class WindowBase : MonoBehaviour, IWindow
     {
         public virtual void Show()

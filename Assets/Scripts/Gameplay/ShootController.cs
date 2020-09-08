@@ -4,25 +4,26 @@ using UnityEngine;
 
 namespace Gameplay
 {
+    // class responsible for raycasting targets
     public class ShootController : MonoBehaviour
     {
-        [SerializeField] private LayerMask shootLayer;
-        [SerializeField] private GameSettings sphereSettings;
+        [SerializeField] private LayerMask shootLayer;                // layer mask
+        [SerializeField] private GameSettings sphereSettings;         // settings to determine raycast max distance
 
         private GameInputBase _input => InputManager.Instance.Input;
-        private Camera _camera;
+        private Camera _camera;                                 // caching camera
 
         private float _maxDist;
 
         private void Start()
         {
             _camera = Camera.main;
-            _maxDist = sphereSettings ? sphereSettings.Radius : 500;
+            _maxDist = sphereSettings ? sphereSettings.Radius : 500; // if no settings - put some high value
         }
 
         private void Update()
         {
-            if (_input.Shoot())
+            if (_input.Shoot())    // if shoot button pressed
             {
                 Shoot();
             }
@@ -30,6 +31,9 @@ namespace Gameplay
 
         protected virtual void Shoot()
         {
+            // simple raycast that checked is object we hit has 
+            // interface we need, and calling Shot method if found
+            
             Ray ray = _camera.ScreenPointToRay(_input.CursorPosition());
 
             Debug.DrawRay(ray.origin, ray.direction);

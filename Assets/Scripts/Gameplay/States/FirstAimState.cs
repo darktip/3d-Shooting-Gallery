@@ -18,11 +18,11 @@ namespace Gameplay.States
         public override void EnterState(GameController owner)
         {
             _previousInput = InputManager.Instance.Input;
-            InputManager.Instance.SetInput(owner.NoneInput);
+            InputManager.Instance.SetInput(owner.NoneInput);  // turns off input
 
-            var cameraController = Object.FindObjectOfType<CameraController>();
+            var cameraController = Object.FindObjectOfType<CameraController>();  // finding cameracontroller
 
-            owner.StartCoroutine(AimingForTarget(owner, cameraController));
+            owner.StartCoroutine(AimingForTarget(owner, cameraController)); // aiming for first target
         }
 
         private IEnumerator AimingForTarget(GameController owner, CameraController cameraController)
@@ -31,9 +31,9 @@ namespace Gameplay.States
 
             yield return new WaitForSeconds(owner.Settings.AutoAimTime);
             
-            InputManager.Instance.SetInput(_previousInput);
+            InputManager.Instance.SetInput(_previousInput); // set input back to what it was before
 
-            stateMachine.SetState(new ShootTargetState(stateMachine));
+            stateMachine.SetState(new ShootTargetState(stateMachine));  // set shoot target state
         }
     }
 }

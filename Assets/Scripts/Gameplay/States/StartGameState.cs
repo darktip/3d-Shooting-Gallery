@@ -19,12 +19,12 @@ namespace Gameplay.States
 
         private IEnumerator WaitForTargetSpawner(GameController owner)
         {
-            yield return new WaitUntil(() => owner.Spawner.TargetsReady);
+            yield return new WaitUntil(() => owner.Spawner.TargetsReady); // wait until targets are created
             
-            var randomTarget = owner.Spawner.GetRandomTarget();
+            var randomTarget = owner.Spawner.GetRandomTarget(); // select random target
             randomTarget.Select();
 
-            stateMachine.SetState(new FirstAimState(stateMachine));
+            stateMachine.SetState(new FirstAimState(stateMachine)); // set first aim state (shows first target)
         }
     }
 }

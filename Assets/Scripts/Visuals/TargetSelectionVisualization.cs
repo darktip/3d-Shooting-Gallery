@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace Visuals
 {
+    // visualizes new selected target by having all of it's materials 
+    // emit color (lighting up target)
     [RequireComponent(typeof(Target))]
     public class TargetSelectionVisualization : MonoBehaviour
     {
@@ -29,7 +31,7 @@ namespace Visuals
 
         private void OnDisable()
         {
-            Target.OnTargetSelect -= OnTargetSelect;
+            Target.OnTargetSelect -= OnTargetSelect;    // don't forget to unsubscribe from static event
         }
 
         private void OnTargetSelect(Target target)

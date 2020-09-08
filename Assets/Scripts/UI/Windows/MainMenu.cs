@@ -17,6 +17,7 @@ namespace UI.Windows
         {
             _windows = UIController.Instance.GameWindows;
 
+            // adding listeners to all buttons
             startGameButton.onClick.AddListener(StartGame);
             highScoreButton.onClick.AddListener(HighScore);
             exitButton.onClick.AddListener(Exit);
@@ -29,6 +30,7 @@ namespace UI.Windows
 
         private void StartGame()
         {
+            // load game scene and hide current screen
             SceneManager.LoadScene(StringConstants.GameScene, LoadSceneMode.Additive);
             UIController.Instance.HideCurrentScreen();
         }

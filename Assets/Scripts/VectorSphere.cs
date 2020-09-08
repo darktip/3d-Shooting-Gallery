@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Structure for spherical coordinates
 public struct VectorSphere
 {
     public float r;
@@ -15,7 +16,7 @@ public struct VectorSphere
         this.r = r;
     }
 
-    public Vector3 ToCartesian()
+    public Vector3 ToCartesian() // Converting from spherical to cartesian coordinate system
     {
         float x = r * Mathf.Sin(theta) * Mathf.Cos(phi);
         float z = r * Mathf.Sin(theta) * Mathf.Sin(phi);

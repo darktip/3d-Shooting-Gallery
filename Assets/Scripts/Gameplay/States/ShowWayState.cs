@@ -36,8 +36,9 @@ namespace Gameplay.States
             }
         }
 
-        private void SelectNewTarget(GameController owner)
-        {
+        private void SelectNewTarget(GameController owner) // select new random target that is not neighbour
+        {                                                  // if happens that 10 times in a row we had neighbours  
+                                                            // maybe not enough targets, select regardles of neighbourship
             int count = 10;
             while (true)
             {
@@ -62,7 +63,7 @@ namespace Gameplay.States
                 }
                 else
                 {
-                    stateMachine.SetState(new ShowWayState(stateMachine));
+                    stateMachine.SetState(new ShowWayState(stateMachine));  // if was hot before this state finished run show way state again
                 }
             }
             else

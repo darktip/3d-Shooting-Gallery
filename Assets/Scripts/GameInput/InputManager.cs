@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace GameInput
 {
+    // singleton for accessing input
+    // and changing it
     public class InputManager : Singleton<InputManager>
     {
         [SerializeField] private GameInputBase gameInput;
@@ -18,8 +20,8 @@ namespace GameInput
         
         public void SetInput(GameInputBase input)
         {
-            gameInput = input;
-            input.Init();
+            gameInput = input;      // change input
+            input.Init();           // init new
         }
     }
 }

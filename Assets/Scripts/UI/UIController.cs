@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace UI
 {
+    // controls windows lifecycle
     public class UIController : Singleton<UIController>
     {
         [SerializeField] private RectTransform screenHolder;
@@ -31,15 +32,15 @@ namespace UI
 
         private void Start()
         {
-            OpenScreen(gameWindows.mainWindow);
+            OpenScreen(gameWindows.mainWindow);      // open main menu on start
         }
 
         public void Update()
         {
-            canvas.gameObject.SetActive(screenHolder.transform.childCount > 0);
+            canvas.gameObject.SetActive(screenHolder.transform.childCount > 0); // hide canvas if no screen
         }
 
-        public void HideCurrentScreen()
+        public void HideCurrentScreen() // destroys previous screen
         {
             if (_lastScreen != null)
             {
@@ -52,14 +53,14 @@ namespace UI
 
         public void OpenScreen(WindowBase window)
         {
-            HideCurrentScreen();
+            HideCurrentScreen();     // hide previous screen
 
-            var instance = WindowBase.Create(window);
-            window.Show();
+            var instance = WindowBase.Create(window);  // instantiate new
+            window.Show();                                        // call show method
 
-            instance.transform.SetParent(screenHolder, false);
+            instance.transform.SetParent(screenHolder, false);  // set parent to windowHolder
 
-            _lastScreen = instance.GetComponent<WindowBase>();
+            _lastScreen = instance.GetComponent<WindowBase>();                   // set reference to last screen
         }
     }
 }
